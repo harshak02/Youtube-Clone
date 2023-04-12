@@ -6,7 +6,7 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import Home from "./pages/Home";
 import { Video } from "./pages/Video";
-
+import { SignIn } from "../src/pages/SignIn";
 
 const Container = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   padding : 20px 40px;
 `;
 
-
+//<ThemeProvider theme2={darkMode ? darkTheme : lightTheme} theme={darkMode ? lightTheme : darkTheme}>
 function App() {
 
   const [darkMode, setDarkMode] = useState(true);
@@ -36,6 +36,7 @@ function App() {
             <Routes>
               <Route path="/">
                 <Route index element={<Home/>}/>
+                <Route path="signin" element={<SignIn />}/>
                 <Route path="video">
                   <Route path=":id" element={<Video/>} />
                 </Route>

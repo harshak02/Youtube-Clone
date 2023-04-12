@@ -2,11 +2,12 @@ import React from 'react'
 import styled from "styled-components";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   position : sticky;
   top : 0;
-  background-color :  ${({theme})=>theme.bg};
+  background-color :  ${({ theme }) => theme.bg};
 `;
 
 const Wrapper = styled.div`
@@ -35,6 +36,7 @@ const Search = styled.div`
 const Input = styled.input`
   border : none;
   background-color : transparent;
+  width: 50%;
 `;
 
 
@@ -52,7 +54,7 @@ const Button = styled.button`
 `;
 
 const IconCustom = styled.div`
-  color : ${({theme})=>theme.text};
+  color : ${({ theme }) => theme.text};
 `;
 
 
@@ -61,18 +63,20 @@ const IconCustom = styled.div`
 export const Navbar = () => {
   return (
     <Container>
-        <Wrapper>
-            <Search>
-                <Input placeholder="  Search" />
-                <IconCustom>
-                    <SearchOutlinedIcon />
-                </IconCustom>
-            </Search>
-            <Button>
-                <AccountCircleOutlinedIcon />
-                SIGN IN
-            </Button>
-        </Wrapper>
+      <Wrapper>
+        <Search>
+          <Input placeholder="  Search" />
+          <IconCustom>
+            <SearchOutlinedIcon />
+          </IconCustom>
+        </Search>
+        <Link to="/signin" style={{ textDecoration: "none", color: "inherit" }}>
+          <Button>
+            <AccountCircleOutlinedIcon />
+            SIGN IN
+          </Button>
+        </Link>
+      </Wrapper>
     </Container>
   )
 }

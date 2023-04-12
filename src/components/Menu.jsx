@@ -21,9 +21,9 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
   flex: 1.25;/*times width*/
-  background-color : ${({theme})=>theme.bg};
+  background-color : ${({ theme }) => theme.bg};
   height : 100%;
-  color : ${({theme})=>theme.text};
+  color : ${({ theme }) => theme.text};
   font-size : 14px;
   position : sticky;
   top : 0;
@@ -52,11 +52,14 @@ const Item = styled.div`
   gap : 20px;/*gap b/w the items*/
   cursor : pointer;
   padding : 7.5px 0px;
+  &:hover{
+    background-color : ${({ theme }) => theme.soft};
+  }
 `;
 
 const Hr = styled.hr`
   margin : 15px 0px;
-  border : 0.5px solid ${({theme})=>theme.soft};
+  border : 0.5px solid ${({ theme }) => theme.soft};
 `;
 
 const Login = styled.div`
@@ -88,87 +91,89 @@ const Title = styled.h2`
   margin-bottom : 20px;
 `;
 
-export const Menu = ({darkMode,setDarkMode}) => {
+export const Menu = ({ darkMode, setDarkMode }) => {
   return <Container>
     <Wrapper>
-      <Link to ="/" style={{ textDecoration : "none",color:"inherit"}}>
+      <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
         <Logo>
-            <Img src={Youtube}/>
-            YouTube
+          <Img src={Youtube} />
+          YouTube
         </Logo>
       </Link>
-        <Item>
-          <HomeIcon />
-          Home
-        </Item>
-        <Item>
-          <ExploreOutlinedIcon />
-          Explore
-        </Item>
-        <Item>
-          <SubscriptionsOutlinedIcon />
-          Subscriptions
-        </Item>
-        <Hr />
-        <Item>
-          <VideoLibraryOutlinedIcon />
-          Library
-        </Item>
-        <Item>
-          <HistoryOutlinedIcon />
-          History
-        </Item>
-        <Hr />
-        <Login>
-            <TextCustom>Sign in to like the videos, comment and subscribe.</TextCustom>
-            <Button>
-                <AccountCircleOutlinedIcon />
-                SIGN IN
-            </Button>
-        </Login>
-        <Hr />
-        <Title>BEST OF YOUTUBE</Title>
-        <Item>
-          <LibraryMusicOutlinedIcon />
-          Music
-        </Item>
-        <Item>
-          <SportsBasketballOutlinedIcon />
-          Sports
-        </Item>
-        <Item>
-          <SportsEsportsOutlinedIcon />
-          Gaming
-        </Item>
-        <Item>
-          <MovieOutlinedIcon />
-          Movies
-        </Item>
-        <Item>
-          <ArticleOutlinedIcon />
-          News
-        </Item>
-        <Item>
-          <LiveTvOutlinedIcon />
-          Live
-        </Item>
-        <Hr />
-        <Item>
-          <SettingsOutlinedIcon />
-          Settings
-        </Item>
-        <Item>
-          <FlagOutlinedIcon />
-          Report
-        </Item>
-        <Item>
-          <HelpOutlineOutlinedIcon />
-          Help
-        </Item>
-        <Item onClick={()=>setDarkMode(!darkMode)}>
-          <SettingsBrightnessOutlinedIcon />
-          {darkMode ? "Light Mode" : "Dark Mode"}
-        </Item>
+      <Item>
+        <HomeIcon />
+        Home
+      </Item>
+      <Item>
+        <ExploreOutlinedIcon />
+        Explore
+      </Item>
+      <Item>
+        <SubscriptionsOutlinedIcon />
+        Subscriptions
+      </Item>
+      <Hr />
+      <Item>
+        <VideoLibraryOutlinedIcon />
+        Library
+      </Item>
+      <Item>
+        <HistoryOutlinedIcon />
+        History
+      </Item>
+      <Hr />
+      <Login>
+        <TextCustom>Sign in to like the videos, comment and subscribe.</TextCustom>
+        <Link to="/signin" style={{ textDecoration: "none" }}>
+          <Button>
+            <AccountCircleOutlinedIcon />
+            SIGN IN
+          </Button>
+        </Link>
+      </Login>
+      <Hr />
+      <Title>BEST OF YOUTUBE</Title>
+      <Item>
+        <LibraryMusicOutlinedIcon />
+        Music
+      </Item>
+      <Item>
+        <SportsBasketballOutlinedIcon />
+        Sports
+      </Item>
+      <Item>
+        <SportsEsportsOutlinedIcon />
+        Gaming
+      </Item>
+      <Item>
+        <MovieOutlinedIcon />
+        Movies
+      </Item>
+      <Item>
+        <ArticleOutlinedIcon />
+        News
+      </Item>
+      <Item>
+        <LiveTvOutlinedIcon />
+        Live
+      </Item>
+      <Hr />
+      <Item>
+        <SettingsOutlinedIcon />
+        Settings
+      </Item>
+      <Item>
+        <FlagOutlinedIcon />
+        Report
+      </Item>
+      <Item>
+        <HelpOutlineOutlinedIcon />
+        Help
+      </Item>
+      <Item onClick={() => setDarkMode(!darkMode)}>
+        <SettingsBrightnessOutlinedIcon />
+        {darkMode ? "Light Mode" : "Dark Mode"}
+      </Item>
     </Wrapper>
   </Container>;
 };
