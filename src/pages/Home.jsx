@@ -25,8 +25,8 @@ export const Home = () => {
 
   return (
     <Container>
-        {videos.map((video) => (
-          <Card key={video._id} />
+        {videos.map((singleVideo) => (
+          <Card key={singleVideo._id} />
         ))}
     </Container>
   );
