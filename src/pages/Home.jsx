@@ -9,19 +9,18 @@ const Container = styled.div`
   flex-wrap : wrap;
 `;
 
-export const Home = () => {
+export const Home = ({type}) => {
 
   //fetching videos from backend
   const [videos,setVideos] = useState([]);
 
-  const fetchVideos = async ()=> {
-    const res = await axios.get("http://localhost:8800/api/videos/random");
-    setVideos(res.data.videos);
-  }
-
   useEffect(()=> {
+    const fetchVideos = async ()=> {
+      const res = await axios.get(`http://localhost:8800/api/videos/${type}`);
+      setVideos(res.data.videos);
+    }
     fetchVideos();
-  },[]);
+  },[type]);//type is arguement -- props
 
   return (
     <Container>

@@ -22,6 +22,10 @@ const Wrapper = styled.div`
 `;
 
 //<ThemeProvider theme2={darkMode ? darkTheme : lightTheme} theme={darkMode ? lightTheme : darkTheme}>
+//Theme provider arguemnts will render whole react tree so thats magic
+//all are props only just javascript substitution thats it
+//Link in some other page is like throw and Router in some other page is like catch and work
+//why we kept router in app means here app.js needed to be rendered
 function App() {
 
   const [darkMode, setDarkMode] = useState(true);
@@ -35,7 +39,9 @@ function App() {
             <Wrapper>
             <Routes>
               <Route path="/">
-                <Route index element={<Home />}/>
+                <Route index element={<Home type="random" />}/>
+                <Route path="trends" element={<Home type="trend"/>}/>
+                <Route path="subscriptions" element={<Home type="sub" />}/>
                 <Route path="signin" element={<SignIn />}/>
                 <Route path="video">
                   <Route path=":id" element={<Video/>} />
