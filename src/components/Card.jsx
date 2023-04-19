@@ -1,7 +1,9 @@
-import React from "react"
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import CircleIcon from '@mui/icons-material/Circle';
 import { Link } from "react-router-dom";
+import { format } from "timeago.js";
+import axios from "axios";
 
 
 //to use here use in prop and use chat gpt for any queires (flex->side by side by default)
@@ -54,17 +56,28 @@ const Info = styled.div`
   color: ${({ theme }) => theme.textSoft};
 `;
 
-export const Card = ({type}) => {
+export const Card = ({type,video}) => {
+
+  const [channel,setChannel] = useState({});
+
+  useEffect(()=> {
+    const fetchChannel = async ()=> {
+      const res = await axios.get(`http://localhost:8800/api/users/find/${video.userId}`);
+      setChannel(res.data.user);
+    }
+    fetchChannel();
+  },[video]);//type is arguement -- props
+
   return (
     <Link to="/video/test" style={{ textDecoration : "none"}}>
     <Container type={type}>
-        <Image type={type} src="https://imgs.search.brave.com/Zmwpna_dJHYvq2dyR9ZcL1u9HN543ZJl8x_RPMGRms4/rs:fit:632:225:1/g:ce/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5y/b2VKR3ozZWV5aHhL/M1hSUTBMeHBRSGFG/aiZwaWQ9QXBp"/>
+        <Image type={type} src={video.imgUrl} />
         <Details type={type} >
-            <ChannelImage type={type} src="https://imgs.search.brave.com/XcwXat5h5XqWxUwbawesLBl9z0_l552CqjzSAw4Hzmw/rs:fit:520:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC4x/ZDdUUUk2N3B3ZnIw/RjVqcVRnRDFBQUFB/QSZwaWQ9QXBp"/>
+            <ChannelImage type={type} src={channel.img} />
             <Texts>
-                <Title> Test Video </Title>
-                <ChannelName>Harsha Vlog's</ChannelName>
-                <Info>660,998 views <CircleIcon sx={{ fontSize: 8 }} /> 1 day ago</Info>
+                <Title> {video.title} </Title>
+                <ChannelName>{ channel.name } </ChannelName>
+                <Info>{video.views} views <CircleIcon sx={{ fontSize: 8 }} /> {format(video.createdAt)}</Info>
             </Texts>
         </Details>
     </Container>
